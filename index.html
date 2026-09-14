@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Kqzeroson Network</title>
+<link rel="stylesheet" href="main.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Background -->
+<div class="bg-wrapper"></div>
+<div class="bg-overlay"></div>
+
+<!-- Navigation -->
+<header>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">The Kqzeroson Network</a>
+    <button class="hamburger" id="hamburger" aria-label="Open navigation" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <ul class="nav-links" id="navLinks" role="list">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li class="status-pill"><a href="#" target="_blank" rel="noopener">● Status</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="#" target="_blank" rel="noopener">GitHub</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+  <!-- Hero -->
+  <section class="hero">
+    <p class="hero-eyebrow">Lentner, Missouri &nbsp;·&nbsp; Gigabit Fiber Hosting</p>
+    <h1>The <em>Kqzeroson</em><br>Network</h1>
+    <p class="hero-sub">
+      Personal-grade infrastructure for community services.
+      Running 24 / 7 out of rural Missouri with backup power.
+    </p>
+    <div class="hero-btns">
+      <a href="#" class="btn btn-primary" target="_blank" rel="noopener">System Status ↗</a>
+      <a href="contact.html" class="btn btn-ghost">Get in Touch</a>
+    </div>
+    <div class="scroll-hint">
+      <span>Services</span>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 3v10M4 9l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="services">
+    <p class="section-label">What We Run</p>
+    <h2 class="section-title">Services &amp; Infrastructure</h2>
+    <p class="section-sub">Five projects hosted out of Lentner, Missouri on gigabit fiber with redundant connectivity.</p>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="service-icon">🛰️</span>
+        <div class="service-name">Starlink Bypass</div>
+        <div class="service-desc">Working around satellite constraints to keep the network reachable from anywhere</div>
+      </div>
+
+      <div class="service-card">
+        <span class="service-icon">🍕</span>
+        <div class="service-name">Infinite Casey Breakfast Pizza Glitch</div>
+        <div class="service-desc">A running inside joke that became a permanent fixture around here</div>
+      </div>
+
+      <div class="service-card">
+        <span class="service-icon">🖥️</span>
+        <div class="service-name">RustDesk</div>
+        <div class="service-desc">Self-hosted remote desktop access, no third-party relay required</div>
+      </div>
+
+      <div class="service-card">
+        <span class="service-icon">🏅</span>
+        <div class="service-name">A Proud Big Boys Member!</div>
+        <div class="service-desc">Certified member of the Big Boys crew, in good standing</div>
+      </div>
+
+      <div class="service-card">
+        <span class="service-icon">🪟</span>
+        <div class="service-name">Windows 10 IoT Enterprise LTSC</div>
+        <div class="service-desc">Long-term servicing build, running lean on dedicated hardware</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <span class="footer-copy">© 2026 The Kqzeroson Network</span>
+    <ul class="footer-links" role="list">
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="#" target="_blank" rel="noopener">Status</a></li>
+      <li><a href="#" target="_blank" rel="noopener">GitHub</a></li>
+    </ul>
+  </div>
+</footer>
+
+<!-- Site theme song -->
+<audio id="siteAudio" src="site-theme.mp3" loop preload="auto"></audio>
+<button class="music-toggle" id="musicToggle" aria-pressed="false" aria-label="Toggle site music">
+  <span class="music-bars"><span></span><span></span><span></span></span>
+  <span id="musicLabel">Music off</span>
+</button>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+
+  hamburger.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    hamburger.classList.toggle('open', isOpen);
+    hamburger.setAttribute('aria-expanded', isOpen);
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+      navLinks.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', false);
+    }
+  });
+
+  // Music: try to autoplay; browsers block audio until the visitor
+  // interacts with the page, so fall back to starting on first click/key/touch.
+  const audio = document.getElementById('siteAudio');
+  const musicToggle = document.getElementById('musicToggle');
+  const musicLabel = document.getElementById('musicLabel');
+  const MUTE_KEY = 'kqzeroson-music-muted';
+
+  function setPlayingUI(isPlaying) {
+    musicToggle.classList.toggle('playing', isPlaying);
+    musicToggle.setAttribute('aria-pressed', isPlaying);
+    musicLabel.textContent = isPlaying ? 'Music on' : 'Music off';
+  }
+
+  function tryAutoplay() {
+    if (localStorage.getItem(MUTE_KEY) === 'true') {
+      setPlayingUI(false);
+      return;
+    }
+    audio.play().then(() => setPlayingUI(true)).catch(() => {
+      setPlayingUI(false);
+      const startOnInteract = () => {
+        if (localStorage.getItem(MUTE_KEY) !== 'true') {
+          audio.play().then(() => setPlayingUI(true)).catch(() => {});
+        }
+        ['click', 'keydown', 'touchstart'].forEach(evt =>
+          document.removeEventListener(evt, startOnInteract)
+        );
+      };
+      ['click', 'keydown', 'touchstart'].forEach(evt =>
+        document.addEventListener(evt, startOnInteract, { once: true })
+      );
+    });
+  }
+
+  musicToggle.addEventListener('click', () => {
+    if (audio.paused) {
+      audio.play().then(() => {
+        setPlayingUI(true);
+        localStorage.setItem(MUTE_KEY, 'false');
+      }).catch(() => {});
+    } else {
+      audio.pause();
+      setPlayingUI(false);
+      localStorage.setItem(MUTE_KEY, 'true');
+    }
+  });
+
+  tryAutoplay();
+</script>
+
+</body>
+</html>
