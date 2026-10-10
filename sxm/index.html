@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kqzeroson's SiriusXM WebPlayer</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; overflow: hidden; background: #060914; }
+    #loading {
+      position: fixed; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      background: #060914; color: #A78BFA;
+      font-family: 'Inter', system-ui, sans-serif;
+      gap: 1rem; z-index: 10;
+      transition: opacity 0.5s ease;
+    }
+    #loading.hidden { opacity: 0; pointer-events: none; }
+    .spinner {
+      width: 48px; height: 48px;
+      border: 3px solid rgba(124,58,237,0.15);
+      border-top: 3px solid #7C3AED;
+      border-radius: 50%;
+      animation: spin 0.75s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    #loading p { font-size: 0.88rem; opacity: 0.65; letter-spacing: 0.3px; }
+    iframe { width: 100%; height: 100%; border: none; display: block; }
+  </style>
+</head>
+<body>
+  <div id="loading">
+    <div class="spinner"></div>
+    <p>Loading Kqzeroson's SiriusXM WebPlayer...</p>
+  </div>
+  <iframe
+    src="https://kqzeroson-siriusxm-production.up.railway.app"
+    allow="autoplay; microphone"
+    onload="document.getElementById('loading').classList.add('hidden')"
+    title="Kqzeroson's SiriusXM WebPlayer"
+  ></iframe>
+</body>
+</html>
